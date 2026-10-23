@@ -1,0 +1,27 @@
+configuration:
+  audio_dir:
+    name: Cartella audio
+    description: Dove finiscono i download "solo audio". In Music Assistant aggiungi un provider "Filesystem (disco locale)" con questo percorso.
+  video_dir:
+    name: Cartella video
+    description: Dove finiscono i download video.
+  output_template:
+    name: Nome dei file
+    description: Template yt-dlp per i singoli brani, es. "%(artist,uploader)s/%(title)s.%(ext)s" per una cartella per artista.
+  output_template_playlist:
+    name: Nome dei file delle playlist
+    description: Template yt-dlp per i brani scaricati da una playlist.
+  max_concurrent_downloads:
+    name: Download contemporanei
+  theme:
+    name: Tema
+  log_level:
+    name: Livello di log
+  ytdl_options:
+    name: Opzioni yt-dlp (JSON)
+    description: Opzioni extra passate a yt-dlp, es. {"writethumbnail":true}.
+  nightly_update_time:
+    name: Aggiornamento notturno yt-dlp
+    description: Ora (HH:MM) in cui aggiornare yt-dlp alla versione nightly. Utile quando YouTube cambia qualcosa e i download smettono di funzionare.
+network:
+  8081/tcp: Interfaccia web e API fuori da Home Assistant (lascia vuoto per usare solo il pannello)

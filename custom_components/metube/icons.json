@@ -1,0 +1,19 @@
+{
+  "entity": {
+    "sensor": {
+      "queue": { "default": "mdi:download-multiple" },
+      "finished": { "default": "mdi:check-all" },
+      "failed": { "default": "mdi:alert-circle-outline" },
+      "last_download": { "default": "mdi:music-note" }
+    },
+    "text": {
+      "link": { "default": "mdi:youtube" }
+    },
+    "button": {
+      "clear_finished": { "default": "mdi:playlist-remove" }
+    }
+  },
+  "services": {
+    "download": { "service": "mdi:download" }
+  }
+}

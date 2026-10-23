@@ -1,0 +1,42 @@
+download:
+  fields:
+    url:
+      required: true
+      example: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+      selector:
+        text:
+          type: url
+    download_type:
+      selector:
+        select:
+          translation_key: download_type
+          options:
+            - audio
+            - video
+    format:
+      example: mp3
+      selector:
+        select:
+          translation_key: format
+          options: [mp3, m4a, opus, flac, wav, auto, any, mp4, ios]
+    quality:
+      example: best
+      selector:
+        select:
+          translation_key: quality
+          options: [best, "320", "192", "128", "2160", "1440", "1080", "720", "480", "360", "240", worst]
+    folder:
+      example: Rock
+      selector:
+        text:
+    playlist_item_limit:
+      selector:
+        number:
+          min: 0
+          max: 1000
+          mode: box
+    config_entry_id:
+      advanced: true
+      selector:
+        config_entry:
+          integration: metube

@@ -1,0 +1,13 @@
+{
+  "domain": "metube",
+  "name": "MeTube",
+  "after_dependencies": ["hassio"],
+  "codeowners": ["@mauro-midolo"],
+  "config_flow": true,
+  "documentation": "https://github.com/mauro-midolo/metube-home-assistant",
+  "integration_type": "service",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/mauro-midolo/metube-home-assistant/issues",
+  "requirements": [],
+  "version": "1.0.0"
+}

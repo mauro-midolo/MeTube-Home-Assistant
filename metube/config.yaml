@@ -1,0 +1,42 @@
+name: MeTube
+version: "2026.10.22-1"
+slug: metube
+description: Interfaccia web per yt-dlp che salva l'audio in /media, pronto per Music Assistant
+url: https://github.com/alexta69/metube
+arch:
+  - amd64
+  - aarch64
+init: false
+startup: application
+boot: auto
+ingress: true
+ingress_port: 8081
+panel_icon: mdi:youtube
+panel_title: MeTube
+ports:
+  8081/tcp: null
+ports_description:
+  8081/tcp: Interfaccia web e API fuori da Home Assistant (lascia vuoto per usare solo il pannello)
+map:
+  - type: media
+    read_only: false
+  - type: share
+    read_only: false
+options:
+  audio_dir: /media/musica
+  video_dir: /media/video
+  output_template: "%(title)s.%(ext)s"
+  output_template_playlist: "%(playlist_title)s/%(title)s.%(ext)s"
+  max_concurrent_downloads: 3
+  theme: auto
+  log_level: info
+schema:
+  audio_dir: str
+  video_dir: str
+  output_template: str
+  output_template_playlist: str
+  max_concurrent_downloads: int(1,10)
+  theme: list(auto|light|dark)
+  log_level: list(debug|info|warning|error)
+  ytdl_options: str?
+  nightly_update_time: match(^([01][0-9]|2[0-3]):[0-5][0-9]$)?

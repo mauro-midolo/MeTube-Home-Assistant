@@ -1,0 +1,27 @@
+configuration:
+  audio_dir:
+    name: Audio folder
+    description: Where audio-only downloads are saved. In Music Assistant add a "Filesystem (local disk)" provider with this path.
+  video_dir:
+    name: Video folder
+    description: Where video downloads are saved.
+  output_template:
+    name: File name template
+    description: yt-dlp output template for single tracks, e.g. "%(artist,uploader)s/%(title)s.%(ext)s" for one folder per artist.
+  output_template_playlist:
+    name: Playlist file name template
+    description: yt-dlp output template for tracks downloaded from a playlist.
+  max_concurrent_downloads:
+    name: Concurrent downloads
+  theme:
+    name: Theme
+  log_level:
+    name: Log level
+  ytdl_options:
+    name: yt-dlp options (JSON)
+    description: Extra options passed to yt-dlp, e.g. {"writethumbnail":true}.
+  nightly_update_time:
+    name: Nightly yt-dlp update
+    description: Time (HH:MM) to update yt-dlp to the nightly build. Useful when YouTube changes something and downloads stop working.
+network:
+  8081/tcp: Web UI and API outside Home Assistant (leave empty to use the sidebar panel only)

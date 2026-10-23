@@ -1,0 +1,153 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "MeTube",
+        "description": "Address of your MeTube server. If you installed the MeTube app from this repository, keep the suggested value.",
+        "data": {
+          "url": "URL"
+        },
+        "data_description": {
+          "url": "For example http://local-metube:8081 (the app) or http://192.168.1.10:8081 (Docker on another machine)."
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Cannot reach MeTube at this address."
+    },
+    "abort": {
+      "already_configured": "This MeTube server is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Default download options",
+        "description": "Used by the link box and by the download action when it does not specify them.",
+        "data": {
+          "download_type": "Type",
+          "format": "Format",
+          "quality": "Quality",
+          "folder": "Folder"
+        },
+        "data_description": {
+          "folder": "Subfolder of the download folder (e.g. Rock). Leave empty for the main folder.",
+          "quality": "For audio: best, 320, 192 or 128 (bitrates depend on the format). For video: a resolution."
+        }
+      }
+    },
+    "error": {
+      "format_mismatch": "This format does not match the chosen type (audio: mp3, m4a, opus, flac, wav, auto; video: any, mp4, ios)."
+    }
+  },
+  "selector": {
+    "download_type": {
+      "options": {
+        "audio": "Audio only",
+        "video": "Video"
+      }
+    },
+    "format": {
+      "options": {
+        "mp3": "MP3",
+        "m4a": "M4A",
+        "opus": "Opus",
+        "flac": "FLAC",
+        "wav": "WAV",
+        "auto": "Auto",
+        "any": "Auto (video)",
+        "mp4": "MP4",
+        "ios": "iOS compatible"
+      }
+    },
+    "quality": {
+      "options": {
+        "best": "Best",
+        "worst": "Worst",
+        "320": "320 kbps",
+        "192": "192 kbps",
+        "128": "128 kbps",
+        "2160": "2160p",
+        "1440": "1440p",
+        "1080": "1080p",
+        "720": "720p",
+        "480": "480p",
+        "360": "360p",
+        "240": "240p"
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "queue": {
+        "name": "Queue"
+      },
+      "finished": {
+        "name": "Completed"
+      },
+      "failed": {
+        "name": "Failed"
+      },
+      "last_download": {
+        "name": "Last download"
+      }
+    },
+    "text": {
+      "link": {
+        "name": "Link to download"
+      }
+    },
+    "button": {
+      "clear_finished": {
+        "name": "Clear completed"
+      }
+    }
+  },
+  "exceptions": {
+    "download_failed": {
+      "message": "MeTube could not add the download: {error}"
+    },
+    "request_failed": {
+      "message": "MeTube request failed: {error}"
+    },
+    "not_loaded": {
+      "message": "No MeTube server is set up and loaded."
+    }
+  },
+  "services": {
+    "download": {
+      "name": "Download",
+      "description": "Asks MeTube to download a link (YouTube or any site yt-dlp supports). Fields left empty use the integration's default options.",
+      "fields": {
+        "url": {
+          "name": "URL",
+          "description": "Link of the video, track or playlist."
+        },
+        "download_type": {
+          "name": "Type",
+          "description": "Audio only or video."
+        },
+        "format": {
+          "name": "Format",
+          "description": "Audio: mp3, m4a, opus, flac, wav, auto. Video: any, mp4, ios."
+        },
+        "quality": {
+          "name": "Quality",
+          "description": "Audio bitrate or video resolution."
+        },
+        "folder": {
+          "name": "Folder",
+          "description": "Subfolder of the download folder (e.g. Rock). Leave empty for the main folder."
+        },
+        "playlist_item_limit": {
+          "name": "Playlist item limit",
+          "description": "Maximum number of playlist items to download (0 = all)."
+        },
+        "config_entry_id": {
+          "name": "MeTube",
+          "description": "MeTube server to use, if you have more than one."
+        }
+      }
+    }
+  }
+}
