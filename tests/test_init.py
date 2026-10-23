@@ -5,8 +5,9 @@ import pytest
 from homeassistant.config_entries import ConfigEntryState
 from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import HomeAssistantError
+from pytest_homeassistant_custom_component.common import async_capture_events
 
-from .conftest import URL
+from .conftest import HISTORY, URL
 
 
 async def _setup(hass, entry):
@@ -124,3 +125,29 @@ async def test_italian_entity_ids(hass: HomeAssistant, entry, metube) -> None:
         "button.metube_svuota_completati",
     ):
         assert hass.states.get(entity_id), entity_id
+
+
+async def test_events_for_new_downloads(hass: HomeAssistant, entry, metube) -> None:
+    finished = async_capture_events(hass, "metube_download_finished")
+    failed = async_capture_events(hass, "metube_download_failed")
+    await _setup(hass, entry)
+    # What MeTube already had at startup is not reported again.
+    assert finished == [] and failed == []
+
+    metube.clear_requests()
+    metube.get(f"{URL}/history", json={**HISTORY, "done": HISTORY["done"] + [
+        {"url": "https://y/5", "title": "Fresh", "status": "finished", "timestamp": 5, "filename": "Fresh.mp3", "folder": "Rock", "format": "mp3", "download_type": "audio"},
+        {"url": "https://y/6", "title": "Gone", "status": "error", "timestamp": 6, "msg": "ERROR: Video unavailable"},
+    ]})
+    await entry.runtime_data.async_refresh()
+    await hass.async_block_till_done()
+
+    assert [e.data["url"] for e in finished] == ["https://y/5"]
+    assert finished[0].data["filename"] == "Fresh.mp3"
+    assert finished[0].data["folder"] == "Rock"
+    assert [e.data["error"] for e in failed] == ["ERROR: Video unavailable"]
+
+    # A later poll with the same history fires nothing new.
+    await entry.runtime_data.async_refresh()
+    await hass.async_block_till_done()
+    assert len(finished) == 1 and len(failed) == 1

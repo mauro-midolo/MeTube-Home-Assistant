@@ -9,7 +9,8 @@ Il repository contiene due pezzi, utilizzabili insieme o separatamente:
   - l'azione **`metube.download`**, da usare in automazioni, script e dashboard;
   - il campo **Link da scaricare** (`text.metube_link_da_scaricare`): incolli il link, premi Invio e parte il download con le opzioni predefinite;
   - i sensori **Coda**, **Completati**, **Falliti** e **Ultimo download**;
-  - il pulsante **Svuota completati** (toglie le voci dall'elenco, non cancella i file).
+  - il pulsante **Svuota completati** (toglie le voci dall'elenco, non cancella i file);
+  - gli eventi **`metube_download_finished`** e **`metube_download_failed`**, uno per ogni download che finisce, con `url`, `title`, `filename`, `folder`, `format` ed `error`.
 
 ## 1. Installare l'app
 
@@ -73,6 +74,17 @@ actions:
   - action: notify.mobile_app_IL_TUO_TELEFONO
     data:
       message: "Pronto in Music Assistant: {{ trigger.to_state.state }}"
+```
+
+Rispondere su Telegram quando un link mandato al bot è pronto (dopo `metube.download`, nella stessa automazione):
+
+```yaml
+- wait_for_trigger:
+    - trigger: event
+      event_type: metube_download_finished
+      event_data:
+        url: "{{ url }}"
+  timeout: "00:30:00"
 ```
 
 I nomi delle entità dipendono dalla lingua di Home Assistant al momento della configurazione; controllali in **Dispositivi e servizi → MeTube**.

@@ -39,3 +39,7 @@ DEFAULT_OPTIONS = {
 }
 
 SCAN_INTERVAL = timedelta(seconds=10)
+
+# Fired once for every download that ends after the integration has started.
+EVENT_DOWNLOAD_FINISHED = "metube_download_finished"
+EVENT_DOWNLOAD_FAILED = "metube_download_failed"
