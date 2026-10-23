@@ -13,6 +13,7 @@ L'app salva i file in `/media`, la stessa cartella che legge l'app Music Assista
 | `output_template` | `%(title)s.%(ext)s` | Nome del file. Con `%(artist,uploader)s/%(title)s.%(ext)s` ottieni una cartella per artista. |
 | `output_template_playlist` | `%(playlist_title)s/%(title)s.%(ext)s` | Nome dei file scaricati da una playlist. |
 | `max_concurrent_downloads` | `3` | Download in parallelo. |
+| `delete_files` | `ask` | Quando togli un download dai completati: `ask` chiede se eliminare anche il file, `true` lo elimina sempre, `false` mai. |
 | `theme` | `auto` | Tema dell'interfaccia. |
 | `ytdl_options` | (vuoto) | Opzioni extra di yt-dlp in JSON. |
 | `nightly_update_time` | (vuoto) | Ora `HH:MM` in cui aggiornare yt-dlp alla nightly. Attivalo se YouTube smette di funzionare tra un aggiornamento e l'altro. |

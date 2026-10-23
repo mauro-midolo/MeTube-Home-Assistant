@@ -32,6 +32,7 @@ env["TEMP_DIR"] = "/tmp/metube"
 env["OUTPUT_TEMPLATE"] = options["output_template"]
 env["OUTPUT_TEMPLATE_PLAYLIST"] = options["output_template_playlist"]
 env["MAX_CONCURRENT_DOWNLOADS"] = str(options["max_concurrent_downloads"])
+env["DELETE_FILE_ON_TRASHCAN"] = options.get("delete_files", "ask")
 env["DEFAULT_THEME"] = options["theme"]
 env["LOGLEVEL"] = options["log_level"].upper()
 env["PORT"] = "8081"

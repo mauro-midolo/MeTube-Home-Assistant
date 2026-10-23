@@ -13,6 +13,9 @@ configuration:
     description: Template yt-dlp per i brani scaricati da una playlist.
   max_concurrent_downloads:
     name: Download contemporanei
+  delete_files:
+    name: Elimina i file dall'elenco
+    description: "Cosa succede ai file quando togli un download dall'elenco dei completati: ask = MeTube chiede ogni volta, true = li elimina sempre, false = li lascia sempre."
   theme:
     name: Tema
   log_level:

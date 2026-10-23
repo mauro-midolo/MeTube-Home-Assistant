@@ -1,5 +1,5 @@
 name: MeTube
-version: "2026.10.22-1"
+version: "2026.10.22-2"
 slug: metube
 description: Interfaccia web per yt-dlp che salva l'audio in /media, pronto per Music Assistant
 url: https://github.com/alexta69/metube
@@ -28,6 +28,7 @@ options:
   output_template: "%(title)s.%(ext)s"
   output_template_playlist: "%(playlist_title)s/%(title)s.%(ext)s"
   max_concurrent_downloads: 3
+  delete_files: ask
   theme: auto
   log_level: info
 schema:
@@ -36,6 +37,7 @@ schema:
   output_template: str
   output_template_playlist: str
   max_concurrent_downloads: int(1,10)
+  delete_files: list(ask|true|false)
   theme: list(auto|light|dark)
   log_level: list(debug|info|warning|error)
   ytdl_options: str?
