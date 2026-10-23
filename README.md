@@ -76,16 +76,20 @@ actions:
       message: "Pronto in Music Assistant: {{ trigger.to_state.state }}"
 ```
 
-Rispondere su Telegram quando un link mandato al bot è pronto (dopo `metube.download`, nella stessa automazione):
+Avvisare su Telegram quando un download finisce:
 
 ```yaml
-- wait_for_trigger:
-    - trigger: event
-      event_type: metube_download_finished
-      event_data:
-        url: "{{ url }}"
-  timeout: "00:30:00"
+triggers:
+  - trigger: event
+    event_type: metube_download_finished
+actions:
+  - action: telegram_bot.send_message
+    data:
+      entity_id: notify.telegram_bot_XXXXXXXX
+      message: "Pronta in Music Assistant: {{ trigger.event.data.title }}"
 ```
+
+L'`url` negli eventi è quello canonico registrato da MeTube (es. `https://www.youtube.com/watch?v=...` anche se avevi mandato un link `youtu.be`).
 
 I nomi delle entità dipendono dalla lingua di Home Assistant al momento della configurazione; controllali in **Dispositivi e servizi → MeTube**.
 
