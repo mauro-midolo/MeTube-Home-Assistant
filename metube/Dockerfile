@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/alexta69/metube:2026.10.22
+ARG BUILD_FROM=ghcr.io/alexta69/metube:2026.10.25
 FROM ${BUILD_FROM}
 
 COPY rootfs/run.py /run.py
